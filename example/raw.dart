@@ -1,4 +1,4 @@
-import 'package:raw/raw.dart';
+import 'package:dart_raw/raw.dart';
 
 class ExampleStruct extends SelfCodec {
   int intField = 0;

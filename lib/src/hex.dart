@@ -161,7 +161,7 @@ class DebugHexEncoder extends Converter<Iterable, String> {
 
       // Print markings
       var printExpectedBytes = false;
-      late int firstAt;
+       int? firstAt;
       final lineSb = new StringBuffer();
       for (var i = start; i < end; i++) {
         lineSb.write(getSpaceBefore(i));

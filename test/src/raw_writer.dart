@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:fixnum/fixnum.dart';
-import 'package:raw/raw.dart';
-import 'package:raw/test_helpers.dart';
+import 'package:dart_raw/raw.dart';
+import 'package:dart_raw/test_helpers.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -63,10 +63,10 @@ void main() {
     });
 
     group("numbers", () {
-      RawWriter writer;
-      num written;
-      List<int> expected;
-      int expectedIndex;
+      late RawWriter writer;
+      late num written;
+      late List<int> expected;
+      late int expectedIndex;
       void littleEndian(int length) {
         final expectedCopy = new List<int>.from(expected);
         final firstIndex = writer.length;
@@ -86,7 +86,7 @@ void main() {
         });
 
         test("simple call", () {
-          writer.writeUint8(written);
+          writer.writeUint8(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
@@ -109,20 +109,20 @@ void main() {
         });
 
         test("simple call", () {
-          writer.writeUint16(written);
+          writer.writeUint16(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("big-endian", () {
-          writer.writeUint16(written, Endian.big);
+          writer.writeUint16(written.toInt(), Endian.big);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("little-endian", () {
           littleEndian(2);
-          writer.writeUint16(written, Endian.little);
+          writer.writeUint16(written.toInt(), Endian.little);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
@@ -145,20 +145,20 @@ void main() {
         });
 
         test("simple call", () {
-          writer.writeUint32(written);
+          writer.writeUint32(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("big-endian", () {
-          writer.writeUint32(written, Endian.big);
+          writer.writeUint32(written.toInt(), Endian.big);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("little-endian", () {
           littleEndian(4);
-          writer.writeUint32(written, Endian.little);
+          writer.writeUint32(written.toInt(), Endian.little);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
@@ -182,7 +182,7 @@ void main() {
         });
 
         test("simple call", () {
-          writer.writeInt8(written);
+          writer.writeInt8(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
@@ -191,7 +191,7 @@ void main() {
           writer = new RawWriter.withCapacity(2);
           writer.length = 2;
           expect(writer.toUint8ListView().buffer.lengthInBytes, 2);
-          writer.writeInt8(written);
+          writer.writeInt8(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
         });
       });
@@ -206,20 +206,20 @@ void main() {
         });
 
         test("simple call", () {
-          writer.writeInt16(written);
+          writer.writeInt16(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("big-endian", () {
-          writer.writeInt16(written, Endian.big);
+          writer.writeInt16(written.toInt(), Endian.big);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("little-endian", () {
           littleEndian(2);
-          writer.writeInt16(written, Endian.little);
+          writer.writeInt16(written.toInt(), Endian.little);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
@@ -228,7 +228,7 @@ void main() {
           writer = new RawWriter.withCapacity(2 + 1);
           writer.length = 2;
           expect(writer.toUint8ListView().buffer.lengthInBytes, 2 + 1);
-          writer.writeInt16(written);
+          writer.writeInt16(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
         });
       });
@@ -243,20 +243,20 @@ void main() {
         });
 
         test("simple call", () {
-          writer.writeInt32(written);
+          writer.writeInt32(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("big-endian", () {
-          writer.writeInt32(written, Endian.big);
+          writer.writeInt32(written.toInt(), Endian.big);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("little-endian", () {
           littleEndian(4);
-          writer.writeInt32(written, Endian.little);
+          writer.writeInt32(written.toInt(), Endian.little);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
@@ -265,7 +265,7 @@ void main() {
           writer = new RawWriter.withCapacity(2 + 3);
           writer.length = 2;
           expect(writer.toUint8ListView().buffer.lengthInBytes, 2 + 3);
-          writer.writeInt32(written);
+          writer.writeInt32(written.toInt());
           expect(writer.toUint8ListView(), byteListEquals(expected));
         });
       });
@@ -279,20 +279,20 @@ void main() {
         });
 
         test("simple call", () {
-          writer.writeFloat32(written);
+          writer.writeFloat32(written.toDouble());
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("big-endian", () {
-          writer.writeFloat32(written, Endian.big);
+          writer.writeFloat32(written.toDouble(), Endian.big);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("little-endian", () {
           littleEndian(4);
-          writer.writeFloat32(written, Endian.little);
+          writer.writeFloat32(written.toDouble(), Endian.little);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
@@ -301,7 +301,7 @@ void main() {
           writer = new RawWriter.withCapacity(2 + 3);
           writer.length = 2;
           expect(writer.toUint8ListView().buffer.lengthInBytes, 2 + 3);
-          writer.writeFloat32(written);
+          writer.writeFloat32(written.toDouble());
           expect(writer.toUint8ListView(), byteListEquals(expected));
         });
       });
@@ -316,20 +316,20 @@ void main() {
         });
 
         test("simple call", () {
-          writer.writeFloat64(written);
+          writer.writeFloat64(written.toDouble());
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("big-endian", () {
-          writer.writeFloat64(written, Endian.big);
+          writer.writeFloat64(written.toDouble(), Endian.big);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
 
         test("little-endian", () {
           littleEndian(8);
-          writer.writeFloat64(written, Endian.little);
+          writer.writeFloat64(written.toDouble(), Endian.little);
           expect(writer.toUint8ListView(), byteListEquals(expected));
           expect(writer.length, expectedIndex);
         });
@@ -338,7 +338,7 @@ void main() {
           writer = new RawWriter.withCapacity(2 + 7);
           writer.length = 2;
           expect(writer.toUint8ListView().buffer.lengthInBytes, 2 + 7);
-          writer.writeFloat64(written);
+          writer.writeFloat64(written.toDouble());
           expect(writer.toUint8ListView(), byteListEquals(expected));
         });
       });

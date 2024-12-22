@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:fixnum/fixnum.dart';
-import 'package:raw/raw.dart' show DebugHexEncoder;
+import 'package:dart_raw/raw.dart' show DebugHexEncoder;
 
 import 'raw_writer.dart';
 
