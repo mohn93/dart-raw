@@ -324,7 +324,7 @@ class RawReader {
   ///
   /// If [isCopyOnRead] is true, the method will return a new copy of the bytes.
   /// Otherwise the method will return a view at the bytes.
-  Uint8List readUint8ListViewOrCopy(int length) {
+  Uint8List readUint8ListViewOrCopy(int? length) {
     if (length == null) {
       length = availableLengthInBytes;
     } else if (length > _byteData.lengthInBytes - index) {
